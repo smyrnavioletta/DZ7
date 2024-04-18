@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 05</title>
+
+    <style>
+      p {
+        margin: 0;
+        padding: 0;
+      }
+
+      .report-block {
+        border: 1px solid green;
+        background-color: #00800049;
+        margin: 10px;
+        padding: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button>Створити звіт</button>
+    <div id="output"></div>
+
+    <template id="monthReport">
+      <div class="report-block">
+        <p>місяць {{month}}</p>
+        <p>сума {{amount}}</p>
+        <ul>
+          {{#users}}
+          <li>{{.}}</li>
+          {{/users}}
+        </ul>
+      </div>
+    </template>
+
+    <script src="mustache.min.js"></script>
+    <script>
+      class MonthReport {
+        constructor(month, amount, users = []) {
+          this.month = month;
+          this.amount = amount;
+          this.users = users;
+        }
+
+        render() {
+          let template = document.querySelector("#monthReport").innerHTML;
+          let html = Mustache.render(template, this);
+          output.insertAdjacentHTML("beforeend", html);
+        }
+      }
+
+      let source = [
+        new MonthReport("Січень", 20, [
+          "Claudia Contreras",
+          "Blair Hayden",
+          "Montgomery Cohen",
+        ]),
+        new MonthReport("Лютий", 140),
+        new MonthReport("Березень", 115, ["Blair Hayden", "Montgomery Cohen"]),
+      ];
+
+      let output = document.querySelector("#output");
+
+      document.querySelector("button").addEventListener("click", function () {
+        source.forEach((monthReport) => monthReport.render());
+      });
+    </script>
+  </body>
+</html>

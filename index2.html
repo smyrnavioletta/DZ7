@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 02</title>
+</head>
+
+<body>
+    <script>
+        class Cylinder {
+            constructor(height, radius) {
+                this.height = height;
+                this.radius = radius;
+            }
+
+            getVolume() {
+                return Math.PI * Math.pow(this.radius, 2) * this.height;
+            }
+        }
+
+        // Створення двох екземплярів класу Cylinder з довільними значеннями
+        let cylinder1 = new Cylinder(5, 3); // Висота: 5, Радіус: 3
+        let cylinder2 = new Cylinder(8, 4); // Висота: 8, Радіус: 4
+
+        // Виведення значень обсягу циліндрів на консоль
+        console.log("Об'єм циліндра 1:", cylinder1.getVolume());
+        console.log("Об'єм циліндра 2:", cylinder2.getVolume());
+    </script>
+</body>
+
+</html>
